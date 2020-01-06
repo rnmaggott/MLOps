@@ -34,8 +34,7 @@ def main():
         dataset_filename = os.environ.get("DATASET_FILE_NAME", )
         credit_data_df = pd.read_csv("dataset/" +dataset_filename)
     else:
-        # get input dataset by name
-        dataset = Dataset.get_by_name(Run.get_context().experiment.workspace, dataset_name)
+        dataset = Dataset.get_by_name(workspace=run.experiment.workspace, name=dataset_name)
         #dataset = run.input_datasets[dataset_name]
         credit_data_df = dataset.to_pandas_dataframe()
 

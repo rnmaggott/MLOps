@@ -1,0 +1,23 @@
+parameters:
+  rm_service_connection: ''
+  resource_group: ''
+  workspace: ''
+  aml_compute_sku: ''
+  aml_compute_cluster: ''
+
+jobs:
+      - job: CreateAMLComputeCluster
+        steps:
+          - task: AzureCLI@1
+            displayName: 'Install the CLI'
+            inputs:
+              azureSubscription:  ${{ parameters.rm_service_connection }}
+              scriptLocation: inlineScript
+              inlineScript: 'az extension add -n azure-cli-ml'
+
+          - task: AzureCLI@1
+            displayName: 'Provision compute cluster for training'
+            inputs:
+              azureSubscription:  ${{ parameters.rm_service_connection }}
+              scriptLocation: inlineScript
+              inlineScript: 'az ml computetarget create amlcompute --max-nodes 3 --name ${{ parameters.aml_compute_cluster }} --vm-size ${{ parameters.aml_compute_sku }} --resource-group ${{ parameters.resource_group }} --vm-priority dedicated --workspace-name ${{ parameters.workspace }} --remote-login-port-public-access disabled'

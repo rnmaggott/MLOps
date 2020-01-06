@@ -1,0 +1,9 @@
+entryScript: models/risk-model/score/score.py
+runtime: python
+condaFile: models/risk-model/score/conda_dependencies.yml
+extraDockerfileSteps:
+schemaFile:
+sourceDirectory:
+enableGpu: False
+baseImage:
+baseImageRegistry:

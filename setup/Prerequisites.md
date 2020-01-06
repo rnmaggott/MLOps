@@ -1,15 +1,30 @@
 # Prerequisites
 
-1. __Check if ACI(Azure Container Instance) is registered in your subscription__: Try executing the command from the Cloud Shell in the portal. Instructions [here](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart).
+1. __Check if ACI(Azure Container Instance) and AKS (Azure Kubernetes Service) are registered in your subscription__: Try executing the command from the Cloud Shell in the portal. Instructions [here](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart).
     If you dont have access, ask your __admin__.
 
     `az provider show -n Microsoft.ContainerInstance -o table`
+    
+    `az provider show -n Microsoft.ContainerService -o table`
 
-    if ACI is not registered, run the below command (you need to be the subscription owner in order to execute this command successfully)
+    if not registered, run the below command (you need to be the subscription owner in order to execute this command successfully)
 
     `az provider register -n Microsoft.ContainerInstance`
     
+    `az provider register -n Microsoft.ContainerService`
+    
     If you dont have access, ask your __admin__.
+
+3. If you don't have Azure DevOps account, [create](https://dev.azure.com) one
+
+4. If you do not have a github account, [create](https://github.com/) one
+
+<!-- Not needed currently. For future reference.
+3. Get subscription id (you need this for later part of the workshop):
+    1. Navigate to http://portal.azure.com
+    2. Navigate to Browse
+    3. In the search box being to type subscription
+    4. Select Subscription from the search
 
 2. __Create a Service Identity__ - this will be used by our application(AZure Devops) to access resources (like Azure ML workspace):
 
@@ -24,15 +39,4 @@
     * Application Secret
 
    Note: If you don't have permission, ask your admin to create a Service Identity for you
-
-4. If you don't have Azure DevOps account, [create](https://dev.azure.com) one
-
-5. If you do not have a github account, [create](https://github.com/) one
-
-<!-- Not needed currently. For future reference.
-3. Get subscription id (you need this for later part of the workshop):
-    1. Navigate to http://portal.azure.com
-    2. Navigate to Browse
-    3. In the search box being to type subscription
-    4. Select Subscription from the search
 -->
